@@ -7,6 +7,7 @@
 */
 
 #include"../include/libraries.h"
+#include"../include/departmentTree.h"
 using namespace std;
 
 void banner();
@@ -18,17 +19,17 @@ int main(int argc, char* argv[]) {
     int option = 0;
     DepartmentTree departmentTree;          
     string dataFiles = "data";                          //default dir
-    string dFile = dataFiles + "/departments.txt";       //department tree file load
-
+    
     if(argc > 1) {
         dataFiles = argv[1];            //testdata edge cases
 
     }
     //load files here
+    string dFile = dataFiles + "/departments.txt";       //department tree file load
     departmentTree.loadDFile(dFile);            //call fx to load departments file
     
     do {
-        menu();     //
+        menu();
         string input = prompt("Select an option: ");
 
         switch(option) {
@@ -38,7 +39,7 @@ int main(int argc, char* argv[]) {
                 break;
             case 3:
                 break;
-            case 4;
+            case 4:
                 break;
             case 5:
                 break;
@@ -51,14 +52,13 @@ int main(int argc, char* argv[]) {
             case 9:
                 break;
             case 0:
+                cout << "Exiting program.\n";
                 break;
             default:
                 cout << "Option not available.";
-                
+
         }
     } while(option != 0);
-
-
 
     return 0;
 
