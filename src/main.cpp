@@ -16,19 +16,46 @@ void menu();
 int main(int argc, char* argv[]) {
     banner();
     int option = 0;
-    
-    //check arguments valid //./campus
-    /*if(argc > 1) {
-        string testData = argv[1]; 
+    DepartmentTree departmentTree;          
+    string dataFiles = "data";                          //default dir
+    string dFile = dataFiles + "/departments.txt";       //department tree file load
 
-    }*/
+    if(argc > 1) {
+        dataFiles = argv[1];            //testdata edge cases
+
+    }
     //load files here
-
-    //continue the menu
+    departmentTree.loadDFile(dFile);            //call fx to load departments file
+    
     do {
         menu();     //
         string input = prompt("Select an option: ");
 
+        switch(option) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4;
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            case 9:
+                break;
+            case 0:
+                break;
+            default:
+                cout << "Option not available.";
+                
+        }
     } while(option != 0);
 
 
