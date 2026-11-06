@@ -7,6 +7,7 @@
 
 #include"../include/libraries.h"
 #include"../include/departmentTree.h"
+#include"../include/campusGraph.h"
 using namespace std;
 
 void banner();
@@ -16,20 +17,32 @@ void menu();
 int main(int argc, char* argv[]) {
     banner();
     int option = 0;
-    DepartmentTree departmentTree;          
+    DepartmentTree departmentTree;
+    CampusGraph campusGraph;
     string dataFiles = "data";                          //default dir
     
     if(argc > 1) {
         dataFiles = argv[1];            //testdata edge cases
 
     }
-    //load files here
+    string bFile = dataFiles + "/buildings.txt";
+    string cFile = dataFiles + "/connections.txt";
+    campusGraph.loadBuildings(bFile);
+    campusGraph.loadConnections(cFile);
+
     string dFile = dataFiles + "/departments.txt";       //department tree file load
     departmentTree.loadDFile(dFile);            //call fx to load departments file
     
     do {
         menu();
         string input = prompt("Select an option: ");
+        istringstream inputStream(input);
+        char extraCharacter;
+        if (!(inputStream >> option) || (inputStream >> extraCharacter)) {
+            cout << "Invalid menu option.\n";
+            option = -1;
+            continue;
+        }
 
         switch(option) {
             case 1:
@@ -37,11 +50,21 @@ int main(int argc, char* argv[]) {
             case 2:
                 break;
             case 3:
+                campusGraph.display();
                 break;
             case 4:
+                campusGraph.displayCountsAndDegrees();
                 break;
-            case 5:
+            case 5: {
+                string startName = prompt("Enter a starting building: ");
+                if (startName.find_first_not_of(" \t\n\r\f\v") ==
+                    string::npos) {
+                    cout << "Error: building name cannot be blank.\n";
+                    break;
+                }
+                campusGraph.displayReachable(startName);
                 break;
+            }
             case 6:     //memberC menu 6-9 [TREE-1 - TREE-8]
                 //add
                 break;
@@ -87,7 +110,7 @@ string prompt(const string& label) {
    // read user input
    cout << label;
    string value;
-   getline(cin >> ws, value); 
+   getline(cin, value);
    return value;
 
 }
