@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
     }
     //load files here
     string dFile = dataFiles + "/departments.txt";       //department tree file load
-    //departmentTree.loadDFile(dFile);            //call fx to load departments file
+    departmentTree.loadDFile(dFile);            //call fx to load departments file
     
     do {
         menu();
@@ -42,13 +42,17 @@ int main(int argc, char* argv[]) {
                 break;
             case 5:
                 break;
-            case 6:
+            case 6:     //memberC menu 6-9 [TREE-1 - TREE-8]
+                //add
                 break;
             case 7:
+                //search
                 break;
             case 8:
+                //hierarchy
                 break;
             case 9:
+                //preorder
                 break;
             case 0:
                 cout << "Exiting program.\n";
