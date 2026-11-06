@@ -10,8 +10,15 @@
 using namespace std;
 
 class DepartmentTree {
+    public:
+        DepartmentTree();       //default constuctor
+        ~DepartmentTree();      //destructor 
 
+        void loadDFile(const string& dFile);                            //TREE-2 departments loaded
 
+    private:
+        //node split prvt to hide complexity from main
+        DepartmentNode* root;           //node ptr that hold root
 
 };
 
