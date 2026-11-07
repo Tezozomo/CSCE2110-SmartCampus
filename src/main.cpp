@@ -13,6 +13,7 @@ using namespace std;
 void banner();
 string prompt(const string& label);
 void menu();
+bool checkStr(const string& str);
 
 int main(int argc, char* argv[]) {
     banner();
@@ -65,17 +66,48 @@ int main(int argc, char* argv[]) {
                 campusGraph.displayReachable(startName);
                 break;
             }
-            case 6:     //memberC menu 6-9 [TREE-1 - TREE-8]
+            case 6: {    //memberC menu 6-9 [TREE-1 - TREE-8]
                 //add
+                string deptName = prompt("Enter the department name: ");
+                
+                if(checkStr(deptName)) {                        //verify input UI-5 
+                    cout << "Department is blank, try again.\n\n";
+                    break;
+
+                }
+                
+                string parentName = "";
+                if(!departmentTree.isEmpty()) {                     //tree not empty
+                    parentName = prompt("Enter parent department name: ";);
+
+                    if(checkStr(parentName)) {                              //name input issue
+                        cout << "Parent Name is blank, try again\n\n";
+                        break;
+
+                    }
+                }
+                departmentTree.addD(deptName, parentName);      //add to tree
                 break;
-            case 7:
+            }
+            case 7: {
                 //search
+                string searchName = prompt("Search the department name: ");
+
+                if(checkStr(searchName)) {
+                    cout << "Department is blank, try again.\n\n";
+                    break;
+
+                }
+                departmentTree.searchD(searchName);
                 break;
+            }
             case 8:
                 //hierarchy
+                departmentTree.printTree();
                 break;
             case 9:
                 //preorder
+                departmentTree.printPreOrder();
                 break;
             case 0:
                 cout << "Exiting program.\n";
@@ -125,5 +157,20 @@ void menu() {
         << "|   4 - Display graph counts and degrees  9 - Run preorder traversal       |\n"
         << "|   5 - Find reachable building           0 - Exit                         |\n"
         << "+--------------------------------------------------------------------------+\n\n";
+
+}
+
+bool checkStr(const string& str) {
+    if(str.empty()) {
+        return true;            //empty
+
+    }
+    for(int i = 0; i < str.length(); i++) {
+        if(!isspace(str[i])) {         //char fnd
+            return false;           //not empty
+
+        }
+    }
+    return true;            //blank
 
 }
