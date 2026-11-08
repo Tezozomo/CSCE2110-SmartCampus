@@ -1,4 +1,4 @@
-/*
+/*NFR-1 separate class for departmentNode
 
 */
 

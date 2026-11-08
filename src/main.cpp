@@ -77,8 +77,8 @@ int main(int argc, char* argv[]) {
                 }
                 
                 string parentName = "";
-                if(!departmentTree.isEmpty()) {                     //tree not empty
-                    parentName = prompt("Enter parent department name: ";);
+                if(departmentTree.root != nullptr) {                     //tree not empty
+                    parentName = prompt("Enter parent department name: ");
 
                     if(checkStr(parentName)) {                              //name input issue
                         cout << "Parent Name is blank, try again\n\n";
