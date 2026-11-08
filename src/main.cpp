@@ -1,7 +1,7 @@
 /* Project2: Smart Campus Navigation and Facility Analytics System
 
-    update: [DOES NOT ALL RUN]
-    compile and execute: g++ main.cpp
+    compile: src/*.cpp -o campus
+    execute: ./campus
 
 */
 
