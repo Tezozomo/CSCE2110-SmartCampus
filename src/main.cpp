@@ -128,8 +128,7 @@ int main(int argc, char* argv[]) {
                 continue;
             }
 
-            //need to figure out how to implement campusGraph to show if a building is found or not
-            /*
+            
 
             if (!campusGraph.buildingFound(building)) {
 
@@ -141,7 +140,7 @@ int main(int argc, char* argv[]) {
 
             }
             
-            */
+            
 
             //create facility class with the information
 

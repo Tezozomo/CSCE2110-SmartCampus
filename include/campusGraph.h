@@ -12,6 +12,9 @@ public:
     void displayCountsAndDegrees() const;
     void displayReachable(const std::string& startName) const;
 
+    //member A functionality
+    bool buildingFound(const std::string& name) const;
+
 private:
     struct Building {
         std::string name;
