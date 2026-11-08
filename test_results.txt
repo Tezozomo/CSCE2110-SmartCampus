@@ -5,12 +5,14 @@ Expected Result: as execute command is made files 4 load summaries should displa
 Actual Result: 3 load summaries present except facilities.txt
 Pass/Fail: Fail
 
+
 Test Number: 10.1 File Loading [M1].2
 Description: A missing file.
 Input: 
 Expected Result:
 Actual Result:
 Pass/Fail:
+
 
 Test Number: 10.1 File Loading [M1].3
 Description: Duplicate building names that differ only by capitalization, and duplicate facility IDs 
@@ -20,6 +22,7 @@ Expected Result:
 Actual Result:
 Pass/Fail:
 
+
 Test Number: 10.1 File Loading [M1].4
 Description: Unknown building references (in connections and in facilities), duplicate and reversed 
             connections, and unknown department parents.
@@ -28,12 +31,14 @@ Expected Result:
 Actual Result:
 Pass/Fail:
 
+
 Test Number: 10.2 Hash Table and Search [M1].5
 Description: Successful, lowercase, invalid-format, and not-found ID searches.
 Input:
 Expected Result:
 Actual Result:
 Pass/Fail:
+
 
 Test Number: 10.2 Hash Table and Search [M1].6
 Description: At least one hash collision, using your own collision test data directory and the HASH-7 
@@ -43,6 +48,7 @@ Expected Result:
 Actual Result:
 Pass/Fail:
 
+
 Test Number: 10.3 Graph and BFS [M1].7
 Description: BFS from a connected building and from an isolated building; BFS with an unknown start; 
             a graph with multiple connected components.
@@ -51,6 +57,7 @@ Expected Result:
 Actual Result:
 Pass/Fail:
 
+
 Test Number: 10.4 Tree, Reports, and Menu [M1].8
 Description: Empty tree (adding the root without a parent prompt), root-only tree, searches for the root, 
             a non-root, and a missing department, adding with an unknown parent, adding a duplicate, and preorder traversal.
@@ -58,6 +65,7 @@ Input: Menu 6-9
 Expected Result: Searches display name, parent, count for child
 Actual Result: Root return 0 dept, 2 children. Hierarchy  displayed.
 Pass/Fail: PASS
+
 
 Test Number: 10.4 Tree, Reports, and Menu [M1].9
 Description: Invalid menu input, text at numeric prompts, names containing spaces, blank names, and repeated operations after errors.
