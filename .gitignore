@@ -1,0 +1,6 @@
+#compiled executables
+a.out
+campus
+*.exe
+*.o
+.vscode/

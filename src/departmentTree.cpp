@@ -14,40 +14,6 @@ DepartmentTree::~DepartmentTree() {
     destructTree(root);
 
 }
-
-void DepartmentTree::destructTree(DepartmentNode* currNode) {
-    if(currNode == nullptr) {
-        return;         //emptyy
-
-    }
-    for(int i = 0; i < currNode->child.size(); i++) {
-        DepartmentNode* nextChild = currNode->child[i];
-        destructTree(nextChild);            //recursively delete child
-
-    }
-    delete currNode;        //parent delete
-
-}
-//search
-DepartmentNode* DepartmentTree::searchNode(DepartmentNode* currNode, const string& name) {
-    if(currNode == nullptr) {
-        return nullptr;
-
-    }
-    if(currNode->name == name) {
-        return currNode;
-
-    }
-    for(int i = 0; i < currNode->child.size(); i++) {
-        DepartmentNode* found = searchNode(currNode->child[i], name);
-        if(found != nullptr) {
-            return found;
-
-        }
-    }
-    return nullptr;
-
-}
 //load
 void DepartmentTree::loadDFile(const string& dFile) {
     ifstream depFile(dFile);            //create stream var
@@ -97,5 +63,144 @@ void DepartmentTree::loadDFile(const string& dFile) {
     depFile.close();        //file closed
 
     cout << dFile << ":" << accept << " accepted, " << reject << " recjected\n";        //LOAD-4 summary
+
+}
+//add
+void DepartmentTree::addD(const string& name, const string& parentNode) {
+    //
+    if(root == nullptr) {
+        root = new DepartmentNode(name);        //create root
+
+    }
+    else {
+        if(searchNode(root, name) != nullptr) {
+            cout << "Department exists,\n";         //make sure same or not
+        
+        }
+        else {
+            DepartmentNode* parent = searchNode(root, parentNode);      //find parent
+            if(parent == nullptr) {
+                cout << "Parent not found.\n";
+
+            }
+            else {
+                DepartmentNode* newNode = new DepartmentNode(name, parent);
+                parent->child.push_back(newNode);           //add child to vector
+
+            }
+        }
+    }
+}
+//search
+void DepartmentTree::searchD(const string& name) {
+    DepartmentNode* foundNode = searchNode(root, name);             //searching
+    if(foundNode == nullptr) {
+        cout << "Department not found.\n";
+
+    }
+    else {
+        int depth = 0;
+        DepartmentNode* currNode = foundNode;           //temp while incrementing depth
+        while(currNode->parent != nullptr) {
+            currNode = currNode->parent;                //has a parent 
+            depth++;
+
+        }
+
+        string parentName;
+        if(foundNode->parent == nullptr) {
+            parentName = "None";
+        
+        }
+        else {
+            DepartmentNode* parentNode = foundNode->parent;     //get parent
+            parentName = parentNode->name;                      //name of node
+
+        }
+        
+        cout << "Name: " << foundNode->name << endl
+             << "Parent: " << parentName << endl
+             << "child count: " << foundNode->child.size() << endl
+             << "Depth: " << depth << endl;
+
+    }
+}
+//print call
+void DepartmentTree::printTree() {
+    if(root == nullptr) {
+        cout << "No department to load.\n";     //nothing to load
+
+    }
+    else {
+        printTree(root, 0);         //access private traversal fx
+    
+    }
+}
+//pre-order
+void DepartmentTree::printPreOrder() {
+    if(root == nullptr) {
+        cout << "No epartment to load\n";
+
+    }
+    else {
+        printPreOrder(root);            //access pre-order
+
+    }
+}
+
+////private node fx's
+//search
+DepartmentNode* DepartmentTree::searchNode(DepartmentNode* currNode, const string& name) {
+    if(currNode == nullptr) {                       //empty?
+        return nullptr;
+
+    }
+    if(currNode->name == name) {
+        return currNode;                    //match
+
+    }
+    for(int i = 0; i < currNode->child.size(); i++) {                               //loop child of curr
+        DepartmentNode* foundNode = searchNode(currNode->child[i], name);           //check child
+        if(foundNode != nullptr) {
+            return foundNode;
+
+        }
+    }
+    return nullptr;
+
+}
+//print traversal
+void DepartmentTree::printTree(DepartmentNode* currNode, int depth) {
+    for(int i = 0; i < depth * 4; i++) {            //4 spaces for depth TREE-5
+        cout << " ";
+
+    }
+    cout << currNode->name << endl;
+
+    for(int i = 0; i < currNode->child.size(); i++) {           //recursive visit children of dept
+        printTree(currNode->child[i], depth + 1);               
+
+    }
+}
+//print pre-order
+void DepartmentTree::printPreOrder(DepartmentNode* currNode) {
+    cout << currNode->name << endl;
+    for(int i = 0; i < currNode->child.size(); i++) {
+        printPreOrder(currNode->child[i]);                  //print descendants
+
+    }
+}
+//managee mem
+void DepartmentTree::destructTree(DepartmentNode* currNode) {
+    if(currNode == nullptr) {
+        return;         //empty
+
+    }
+    for(int i = 0; i < currNode->child.size(); i++) {
+        DepartmentNode* nextChild = currNode->child[i];
+        destructTree(nextChild);            //recursively delete child
+
+    }
+    delete currNode;        //parent delete
 
 }

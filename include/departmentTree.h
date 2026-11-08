@@ -1,4 +1,4 @@
-/*
+/*NFR-1
 
 */
 
@@ -20,9 +20,10 @@ class DepartmentTree {
         void printTree();                                        //parameters diff no conflict
         void printPreOrder();
 
+        DepartmentNode* root;           //node ptr that hold root
+        
     private:
         //node split prvt to hide complexity from main
-        DepartmentNode* root;           //node ptr that hold root
         DepartmentNode* searchNode(DepartmentNode* currNode, const string& name);        
         void printTree(DepartmentNode* currNode, int depth);      //TREE-5 hierarchy
         void printPreOrder(DepartmentNode* currNode);             //TREE-6 traversal
