@@ -61,7 +61,13 @@ Pass/Fail: PASS
 
 Test Number: 10.4 Tree, Reports, and Menu [M1].9
 Description: Invalid menu input, text at numeric prompts, names containing spaces, blank names, and repeated operations after errors.
-Input:
-Expected Result:
-Actual Result:
-Pass/Fail:
+Input: abc, -5, 99. verify error and warning display for invalid input.
+        blank name handling menu 7, press enter when blank
+        adding department containing space
+Expected Result: error display and no loop.
+                warning of blank not available and retry entry.
+                add dept. and node insert
+Actual Result: error displays and reprompts for choice continuation.
+                prompt of error with blank and try again.
+                both names accepted and node was insert
+Pass/Fail: PASS

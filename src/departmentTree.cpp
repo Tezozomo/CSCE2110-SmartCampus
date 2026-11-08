@@ -19,7 +19,8 @@ void DepartmentTree::loadDFile(const string& dFile) {
     ifstream depFile(dFile);            //create stream var
 
     if(!depFile.is_open()) {
-        cout << "Error opening departments file.\n";        //check file work
+        cout << "Error opening departments file." << dFile << endl;        //check file work
+        cout << dFile << ": 0 accepted, 0 rejected\n";
         return;
 
     }
@@ -27,6 +28,7 @@ void DepartmentTree::loadDFile(const string& dFile) {
     string line;
     int accept = 0;
     int reject = 0;
+    int count = 0;
 
     while(getline(depFile, line)) {
         if(line.empty() || line[0] == '#') {
