@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
         istringstream inputStream(input);
         char extraCharacter;
         if (!(inputStream >> option) || (inputStream >> extraCharacter)) {
-            cout << "Invalid menu option.\n";
+            cout << "Invalid menu option.\n\n";
             option = -1;
             continue;
         }
@@ -110,10 +110,10 @@ int main(int argc, char* argv[]) {
                 departmentTree.printPreOrder();
                 break;
             case 0:
-                cout << "Exiting program.\n";
+                cout << "Exiting program.\n\n";
                 break;
             default:
-                cout << "Option not available.";
+                cout << "Option not available.\n\n";
 
         }
     } while(option != 0);
