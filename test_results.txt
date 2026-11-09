@@ -50,12 +50,13 @@ Pass/Fail:
 
 
 Test Number: 10.3 Graph and BFS [M1].7
-Description: BFS from a connected building and from an isolated building; BFS with an unknown start; 
-            a graph with multiple connected components.
-Input:
-Expected Result:
-Actual Result:
-Pass/Fail:
+Description: BFS from a connected building, isolated building, and unknown building.
+Input: Menu 3-5
+Expected Result: Graph displays buildings and connections. Counts and degrees are correct.
+                BFS shows reachable buildings and their distance.
+Actual Result: Library reached 6 of 7 buildings. Observatory reached only itself.
+               Unknown and blank building names showed an error.
+Pass/Fail: PASS
 
 
 Test Number: 10.4 Tree, Reports, and Menu [M1].8
