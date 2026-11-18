@@ -24,6 +24,8 @@ class HashTable {
         int getCapacity() const;
         int getEntries() const;
         int getCollisions() const;
+        
+        void display() const;
 
     };
 

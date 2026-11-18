@@ -4,6 +4,23 @@
 
 using namespace std;
 
+//trimming out whitespace before uppercasing IDs
+string normalizeID(string id) {
+    size_t first = id.find_first_not_of(" \t\n\r\f\v");
+    if (first == string::npos) {
+        return "";
+    } 
+
+    size_t last = id.find_last_not_of(" \t\n\r\f\v");
+    id = id.substr(first, last - first + 1);
+    
+    //uppercase
+    for (char& c : id) {
+        c = toupper(static_cast<unsigned char>(c));
+    }
+    return id;      
+}
+
 //constructing the hash table
 HashTable::HashTable(int size) {
 
@@ -21,12 +38,10 @@ HashTable::HashTable(int size) {
 //finds index for the bucket by using facility IDs
 int HashTable::hashFunction(string key) const {
 
+    key = normalizeID(key);
+
     int h = 0;
 
-    //normalize all IDs to be uppercased in case of lowercase IDs
-    for (char& c : key) {
-        c = toupper(static_cast<unsigned char>(c));
-    }
 
     //hash funct
     for (char c : key) {
@@ -38,17 +53,13 @@ int HashTable::hashFunction(string key) const {
 //adds facility to table
 bool HashTable::insert(const Facility& facility) {
 
-    string key = facility.getID();
-    //normalize all IDs to be uppercased in case of lowercase IDs
-    for (char& c : key) {
-        c = toupper(static_cast<unsigned char>(c));
-    }
+    string key = normalizeID(facility.getID());
 
     int index = hashFunction(key);
     //this for loop checks to see if any IDs are duplicates of eachother
     for (const Facility& existing : hashTable[index]) {
 
-        if (existing.getID() == key) {
+        if (normalizeID(existing.getID()) == key) {
 
             return false;
 
@@ -70,16 +81,13 @@ bool HashTable::insert(const Facility& facility) {
 //uses the facilities ID to "search" for it
 const Facility* HashTable::search(string facilityID) const {
 
-    //normalize all IDs to be uppercased in case of lowercase IDs
-    for (char& c : facilityID) {
-        c = toupper(static_cast<unsigned char>(c));
-    }
+    facilityID = normalizeID(facilityID);
 
     int index = hashFunction(facilityID);
     //searches the bucket we have the index for
     for (const Facility& facility : hashTable[index]) {
         //returns the facility if the IDs match
-        if (facility.getID() == facilityID) {
+        if (normalizeID(facility.getID()) == facilityID) {
             
             return &facility;
 
@@ -105,4 +113,24 @@ int HashTable::getCollisions() const {
 
     return collisions;
 
+}
+
+void HashTable::display() const {
+
+    if (entries == 0) {
+        
+        cout << "Facilities not found." << endl;
+
+        return;
+
+    }
+
+    for (const auto& bucket : hashTable) {
+
+        for (const Facility& facility : bucket) {
+
+            facility.display();
+            
+        }
+    }
 }

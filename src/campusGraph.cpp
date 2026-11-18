@@ -237,3 +237,10 @@ void CampusGraph::displayReachable(const string& startName) const {
     cout << "Reachable count: " << reachableCount << " out of "
          << buildings.size() << "\n";
 }
+
+//member A functionality
+bool CampusGraph::buildingFound(const std::string& name) const {
+
+    return findBuilding(name) != buildings.size();
+
+}
